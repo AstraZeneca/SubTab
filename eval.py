@@ -165,6 +165,8 @@ if __name__ == "__main__":
     config = get_config(args)
     # Overwrite the parent folder name for saving results
     config["framework"] = config["dataset"]
+    # Turn off valiation
+    config["validate"] = False
     # Get all of available training set for evaluation (i.e. no need for validation set)
     config["training_data_ratio"] = 1.0
     # Turn off noise when evaluating the performance

@@ -20,7 +20,7 @@ The official implementation of the paper, **![SubTab: Subsetting Features of Tab
 
 # Model
 
-![SubTab](./assets/SubTab_transparent_bg.gif)
+![SubTab](./assets/SubTab.gif)
 
 
 # Paper

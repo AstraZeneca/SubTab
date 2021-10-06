@@ -101,13 +101,13 @@ class TabularDataset(Dataset):
     def __getitem__(self, idx):
         """Returns batch"""
         sample = self.data[idx]
-        cluster = int(self.labels[idx]) if self.mode != "validation" else None
+        cluster = int(self.labels[idx])
         return sample, cluster
 
     def _load_data(self):
         """Loads one of many available datasets, and returns features and labels"""
 
-        if self.dataset_name.lower() in ["mnist", "mnist_dummy"]:
+        if self.dataset_name.lower() in ["mnist"]:
             x_train, y_train, x_test, y_test = self._load_mnist()
         else:
             print(f"Given dataset name is not found. Check for typos, or missing condition "
@@ -116,6 +116,11 @@ class TabularDataset(Dataset):
 
         # Define the ratio of training-validation split, e.g. 0.8
         training_data_ratio = self.config["training_data_ratio"]
+        
+        # If validation is on, and trainin_data_ratio==1, stop and warn
+        if self.config["validate"] and training_data_ratio >= 1.0:
+            print(f"training_data_ratio must be < 1.0 if you want to run validation during training.")
+            exit()            
 
         # Shuffle indexes of samples to randomize training-validation split
         idx = np.random.permutation(x_train.shape[0])
@@ -128,7 +133,7 @@ class TabularDataset(Dataset):
         # Validation data
         x_val = x_train[val_idx, :]
         y_val = y_train[val_idx]
-
+        
         # Training data
         x_train = x_train[tr_idx, :]
         y_train = y_train[tr_idx]

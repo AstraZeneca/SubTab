@@ -102,6 +102,8 @@ if __name__ == "__main__":
         config["dims"] = dims
         # Disable adding noise since we are in evaluation mode
         config["add_noise"] = False
+        # Turn off valiation
+        config["validate"] = False
         # Get all of available training set for evaluation (i.e. no need for validation set)
         config["training_data_ratio"] = 1.0
         # Run Evaluation

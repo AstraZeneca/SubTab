@@ -1,0 +1,42 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+PyYAML = "*"
+numpy = "*"
+matplotlib = "*"
+jupyter = "*"
+ipykernel = "*"
+scipy = "*"
+pandas = "*"
+seaborn = "*"
+tqdm = "*"
+isort = "*"
+xlrd = ">=1.0.0"
+torch = "*"
+torchvision = "*"
+pytorch-lightning = "*"
+mlflow = "*"
+sklearn = "*"
+python-mnist = "*"
+scikit-image = "*"
+scikit-learn = "*"
+opencv-python = "*"
+datatable = "*"
+h5py = "*"
+imageio = "*"
+imbalanced-learn = "*"
+imblearn = "*"
+Pillow = "*"
+tabulate = "*"
+tensorboard = "*"
+texttable = "*"
+wget = "*"
+pytest = "*"
+
+[requires]
+python_version = "3.7"

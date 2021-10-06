@@ -1,0 +1,37 @@
+# Unnecessary dot and cache files
+.DS_store
+.venv
+.idea
+.ipynb_checkpoints
+__pycache__/
+.lock
+.vscode/
+
+# C extensions
+*.so
+
+# Excel and CSV files
+*.csv
+*.xlsx
+
+# All folders under /results, except the one used for testing, i.e. mnist_dummy
+results/*
+
+# All folders under /data, except the one provided for demo purposes, i.e. mnist
+data/*
+!data/mnist
+
+# Ignore tests to keep the repo clean
+tests/*
+
+# Ignore notebook folder since it might contain sensitive information
+notebooks/*
+
+# Ignore custome scripts
+custom_scripts/*
+
+# All yaml files under config, except those used for demo and testing, i.e. runtime, mnist, mnist_dummy
+config/*
+!config/runtime.yaml
+!config/mnist.yaml
+

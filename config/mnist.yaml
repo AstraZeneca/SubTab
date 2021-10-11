@@ -1,0 +1,55 @@
+---
+# Model type and architecture
+model_mode: ae                    # Model to use. ae: Autoencoder
+reconstruction: true              #
+shallow_architecture: true        # If True, we use shallow encoder/decoder architecture with only one hidden layer for each
+                                  # Else, 'dims' define the encoder architecture, and decoder is the symmetric version of encoder
+
+# Architecture-related params
+# The dimension of input features is added automatically, so it does not need to be defined here.
+dims:                             # Autoencoder architecture - This is for Encoder - Decoder is symmetric to Encoder.
+  - 784                           # Hidden. 
+  - 784
+
+isBatchNorm: false                # Set True to use BatchNorm layer
+isDropout: false                  # Set True to use Dropout layer
+
+# p-norm if z is normalised
+normalize: true                   # If True, we do L2 normalization on latent variable
+p_norm: 2                         # p-value used for normalization. p=2 for L2 norm, p=1 for L1 norm and so on.
+
+# Parameters for training
+dropout_rate: 0.2                 # Set dropout rate if Dropout is being used
+learning_rate: 0.001              # Learning rate for training
+epochs: 15                        # Number of epochs to use for training
+batch_size: 32                    # Set batch size
+nth_epoch: 1                      # Compute validation loss in every nth_epoch
+validate: false                   # Whether to compute validation loss
+scheduler: false                  # If True, turns on scheduler for learning rate.
+
+# Options for subsetting
+n_subsets: 4                      # Use at least 2 when using a single view. 
+overlap: 0.75                     # A ratio [0,1) that defines how many features are overlapped between subsets. 
+                                  
+# Type of aggregation / pooling for latent variables of subsets
+aggregation: mean                 # options:  mean (default), sum, max, min, and concat
+
+# Noise-related options
+add_noise: true                   # If True, it adds noise. The noise type is defined in "noise_type"
+noise_type: swap_noise            # Type of noise to add to. Choices: swap_noise, gaussian_noise, zero_out
+masking_ratio: 0.3                # Percentage of the feature to add noise to
+noise_level: 0.1                  # Stdev defined for Gaussian noise
+
+# Data
+n_classes: 10                     # Number of classes in the data 
+training_data_ratio: 1.0          # Percentage of training set to be used as training - The rest will be used for validation
+
+# Losses to use
+contrastive_loss: true            # If True, the contrastive loss is added to the total loss.
+distance_loss: true               # If True, the distance loss is added to the total loss.
+
+# Options for loss functions
+tau: 0.1                          # Temperature parameter used in NTXentLoss
+cosine_similarity: false          # If True, use cosine similarity in NTXentLoss. Else, use dot product.
+reconstruct_subset: false         # If True, reconstructs subset of given input to encoder. 
+                                  # Else, it reconstructs the complete tabular data.

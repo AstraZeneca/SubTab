@@ -3,7 +3,7 @@
 
 The official implementation of the paper, 
 
-![SubTab: Subsetting Features of Tabular Data for Self-Supervised Representation Learning](https://arxiv.org/abs/2110.04361)
+[SubTab: Subsetting Features of Tabular Data for Self-Supervised Representation Learning](https://arxiv.org/abs/2110.04361)
 
 # Table of Contents:
 

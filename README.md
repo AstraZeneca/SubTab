@@ -89,7 +89,7 @@ For each new dataset, you can use the following steps:
    - For example, you can add ```_load_tcga()``` for tcga dataset, or ```_load_income()``` for income dataset. 
    - The function should return (x_train, y_train, x_test, y_test)
 
-2. Add a separate ```elif``` condition in [this section](https://github.com/AstraZeneca/SubTab/blob/2ef38963a86dfc216c927fed212ab045c4092a8e/utils/load_data.py#L110-L112) within ```_load_data()``` method of ```TabularDataset()``` class in ```utils/load_data.py```
+2. Add a separate ```elif``` condition in [this section](https://github.com/AstraZeneca/SubTab/blob/c2abe42a3d9b8b817de7db465409cd6337849e44/utils/load_data.py#L110-L112) within ```_load_data()``` method of ```TabularDataset()``` class in ```utils/load_data.py```
 
 3. Create a new config file with the same name as dataset name.
    - For example, ```tcga.yaml``` for tcga dataset, or ```income.yaml``` for income dataset.
@@ -101,7 +101,7 @@ For each new dataset, you can use the following steps:
 You can also do train-test split and pre-processing within your custom ```_load_dataset_name()``` function.
 
 5. (Optional) If you want to place the new dataset under a different directory than the local "./data/", then:
-   - Place the dataset folder anywhere, and define the root directory to it in [this line](https://github.com/AstraZeneca/SubTab/blob/2ef38963a86dfc216c927fed212ab045c4092a8e/config/runtime.yaml#L5)
+   - Place the dataset folder anywhere, and define the root directory to it in [this line](https://github.com/AstraZeneca/SubTab/blob/c2abe42a3d9b8b817de7db465409cd6337849e44/config/runtime.yaml#L5)
 of ```/config/runtime.yaml```. 
 
    - For example, if the path to tcga dataset is ```/home/.../data/tcga/```, 
@@ -158,7 +158,7 @@ You can save results of evaluations under "evaluation" folder.
 
 
 # Experiment tracking
-MLFlow is used to track experiments. It is turned off by default, but can be turned on by changing option [on this line](https://github.com/AstraZeneca/SubTab/blob/2ef38963a86dfc216c927fed212ab045c4092a8e/config/runtime.yaml#L2) in 
+MLFlow is used to track experiments. It is turned off by default, but can be turned on by changing option [on this line](https://github.com/AstraZeneca/SubTab/blob/c2abe42a3d9b8b817de7db465409cd6337849e44/config/runtime.yaml#L2) in 
 runtime config file in ```./config/runtime.yaml```
 
 

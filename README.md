@@ -84,7 +84,7 @@ python eval.py  # For evaluation
 
 For each new dataset, you can use the following steps:
 
-1. Provide a ```_load_dataset_name()``` function, similar to [MNIST load function](https://github.com/AstraZeneca/SubTab/blob/2ef38963a86dfc216c927fed212ab045c4092a8e/utils/load_data.py#L174-L190)
+1. Provide a ```_load_dataset_name()``` function, similar to [MNIST load function](https://github.com/AstraZeneca/SubTab/blob/6d5d857c1eeda6b798d03f3440fb294106834d0b/utils/load_data.py#L174-L190)
 
    - For example, you can add ```_load_tcga()``` for tcga dataset, or ```_load_income()``` for income dataset. 
    - The function should return (x_train, y_train, x_test, y_test)

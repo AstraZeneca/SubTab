@@ -174,9 +174,6 @@ class TabularDataset(Dataset):
     def _load_mnist(self):
         """Loads MNIST dataset"""
         
-        # Overwrite the datapath since the code will be pushed with mnist 
-        # dataset for demo and testing (using /results/mnist_dummy/) purposes. 
-        # We don't want to have a separate mnist_dummy data folder
         self.data_path = os.path.join("./data/", "mnist")
         
         with open(self.data_path + '/train.npy', 'rb') as f:

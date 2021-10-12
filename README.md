@@ -1,21 +1,22 @@
 # SubTab: 
 ##### Author: Talip Ucar (ucabtuc@gmail.com)
 
-The official implementation of the paper, **![SubTab: Subsetting Features of Tabular Data for Self-Supervised Representation Learning](#TODO: Link to the paper)**.
+The official implementation of the paper, 
+
+![SubTab: Subsetting Features of Tabular Data for Self-Supervised Representation Learning](https://arxiv.org/abs/2110.04361)
 
 # Table of Contents:
 
 1. [Model](#model)
-2. [Paper](#paper)
-3. [Environment](#environment)
-4. [Data](#data)
-5. [Configuration](#configuration)
-6. [Training and Evaluation](#training-and-evaluation)
-7. [Adding New Datasets](#adding-new-datasets)
-8. [Results](#results)
-9. [Experiment tracking](#experiment-tracking)
-10. [Citing the paper](#citing-the-paper)
-11. [Citing this repo](#citing-this-repo)
+2. [Environment](#environment)
+3. [Data](#data)
+4. [Configuration](#configuration)
+5. [Training and Evaluation](#training-and-evaluation)
+6. [Adding New Datasets](#adding-new-datasets)
+7. [Results](#results)
+8. [Experiment tracking](#experiment-tracking)
+9. [Citing the paper](#citing-the-paper)
+10. [Citing this repo](#citing-this-repo)
 
 
 # Model
@@ -29,10 +30,6 @@ The official implementation of the paper, **![SubTab: Subsetting Features of Tab
 
 </details>
 
-
-# Paper
-
-![SubTab](TODO: Link to the paper)
 
 # Environment
 We used Python 3.7 for our experiments. The environment can be set up by following three steps:
@@ -83,11 +80,11 @@ python eval.py  # For evaluation
    - You can also run evaluation separately by using ```eval.py```.
 
 
-# Adding New Datasets:
+# Adding New Datasets
 
 For each new dataset, you can use the following steps:
 
-1. Provide a ```_load_dataset_name()``` function, similar to [MNIST load function](https://github.com/AstraZeneca/SubTab/blob/2ef38963a86dfc216c927fed212ab045c4092a8e/utils/load_data.py#L174-L193)
+1. Provide a ```_load_dataset_name()``` function, similar to [MNIST load function](https://github.com/AstraZeneca/SubTab/blob/2ef38963a86dfc216c927fed212ab045c4092a8e/utils/load_data.py#L174-L190)
 
    - For example, you can add ```_load_tcga()``` for tcga dataset, or ```_load_income()``` for income dataset. 
    - The function should return (x_train, y_train, x_test, y_test)
@@ -112,25 +109,32 @@ of ```/config/runtime.yaml```.
    The code will fill in ```tcga``` folder name from the name given in the command line argument
    (e.g. ```-d dataset_name```. In this case, dataset_name would be tcga).
 
-# Structure of the repo:
+# Structure of the repo
 <pre>
-train.py
-eval.py
-src
+- train.py
+- eval.py
+
+- src
     |-model.py
-config
+    
+- config
     |-runtime.yaml
     |-mnist.yaml
-utils
+    
+- utils
     |-load_data.py
     |-arguments.py
     |-model_utils.py
     |-loss_functions.py
     ...
-data
+    
+- data
     |-mnist
     ...
-results
+    
+- results
+    |
+    ...
 </pre>
 
 # Results
@@ -138,7 +142,7 @@ results
 Results at the end of training is saved under ```./results``` directory. Results directory structure is as following:
 
 <pre>
-results
+- results
     |-dataset name
             |-evaluation
                 |-clusters (for plotting t-SNE and PCA plots of embeddings)
@@ -158,9 +162,16 @@ MLFlow is used to track experiments. It is turned off by default, but can be tur
 runtime config file in ```./config/runtime.yaml```
 
 
-# Citing the paper:
+# Citing the paper
 
-#TODO
+```
+@article{ucar2021subtab,
+  title={SubTab: Subsetting Features of Tabular Data for Self-Supervised Representation Learning},
+  author={Ucar, Talip and Hajiramezanali, Ehsan and Edwards, Lindsay},
+  journal={arXiv preprint arXiv:2110.04361},
+  year={2021}
+}
+```
 
 # Citing this repo
 If you use SubTab framework in your own studies, and work, please cite it by using the following:

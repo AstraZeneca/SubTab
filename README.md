@@ -5,6 +5,8 @@ The official implementation of the paper,
 
 [SubTab: Subsetting Features of Tabular Data for Self-Supervised Representation Learning](https://arxiv.org/abs/2110.04361)
 
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/subtab-subsetting-features-of-tabular-data-1/unsupervised-mnist-on-mnist)](https://paperswithcode.com/sota/unsupervised-mnist-on-mnist?p=subtab-subsetting-features-of-tabular-data-1)
+
 # Table of Contents:
 
 1. [Model](#model)

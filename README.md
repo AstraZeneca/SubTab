@@ -21,6 +21,10 @@ The official implementation of the paper,
 10. [Citing this repo](#citing-this-repo)
 
 
+- **NeurIPS 2021 slides:**
+
+  [![NeurIPS 2021 slides](./assets/presentation_cover.png)](./assets/NeurIPS_2021_slides.pdf)
+
 # Model
 
 ![SubTab](./assets/SubTab.gif)
@@ -74,13 +78,15 @@ There are two types of configuration files:
 You can train and evaluate the model by using:
 
 ```
-python train.py # For training
+python train.py # For training. 
 python eval.py  # For evaluation
 ```
 
    - ```train.py``` will also run evaluation at the end of the training. 
    - You can also run evaluation separately by using ```eval.py```.
-
+   - For a list of arguments, please see ```./utils/arguments.py```
+     - Use ```-h``` argument to get help when running scripts.
+     - Use ```-d dataset_name``` to run scripts on new datasets 
 
 # Adding New Datasets
 

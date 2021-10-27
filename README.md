@@ -21,7 +21,7 @@ The official implementation of the paper,
 10. [Citing this repo](#citing-this-repo)
 
 
-**NeurIPS 2021 slides**    |  **NeurIPS 2021 poster**
+NeurIPS 2021 slides        |  NeurIPS 2021 poster
 :-------------------------:|:-------------------------:
 [![NeurIPS 2021 slides](./assets/presentation_cover.png)](./assets/NeurIPS_2021_slides.pdf)  |  [![NeurIPS 2021 poster](./assets/poster_cover.png)](./assets/NeurIPS_2021_poster.pdf)
 

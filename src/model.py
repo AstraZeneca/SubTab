@@ -109,24 +109,14 @@ class SubTab:
 
                 # If we use either contrastive and/or distance loss, we need to use combinations of subsets
                 if self.is_combination:
-                    
-                    # Compute combinations of subsets [(x1, x2), (x1, x3)...]
-                    subset_combinations = list(itertools.combinations(x_tilde_list, 2))
-
-                    # Concatenate xi, and xj, and turn it into a tensor
-                    feature_batch_list = []
-                    for (xi, xj) in subset_combinations:
-                        Xbatch = self.process_batch(xi, xj)
-                        feature_batch_list.append(Xbatch)
-
-                    # Overwrite the input list so that it contains the list of combinations
-                    x_tilde_list = feature_batch_list
+                    # Get combinations of subsets [(x1, x2), (x1, x3)...]
+                    x_tilde_list = self.get_combinations_of_subsets(x_tilde_list)
 
                 # 0 - Update Autoencoder
                 self.update_autoencoder(x_tilde_list, Xorig)
                 # 1 - Update log message using epoch and batch numbers
                 self.update_log(epoch, i)
-                # 2 - Clean-up for efficient memory usage.
+                # 2 - Clean-up for efficient memory usage
                 gc.collect()
 
             # Validate every nth epoch. n=1 by default, but it can be changed in the config file
@@ -174,16 +164,7 @@ class SubTab:
                 # If we use either contrastive and/or distance loss, we need to use combinations of subsets
                 if self.is_combination:
                     # Get combinations of subsets [(x1, x2), (x1, x3)...]
-                    subset_combinations = list(itertools.combinations(x_tilde_list, 2))
-
-                    # Concatenate xi, and xj, and turn it into a tensor
-                    feature_batch_list = []
-                    for (xi, xj) in subset_combinations:
-                        Xbatch = self.process_batch(xi, xj)
-                        feature_batch_list.append(Xbatch)
-                        
-                    # Overwrite the input list so that it contains the list of combinations
-                    x_tilde_list = feature_batch_list
+                    x_tilde_list = self.get_combinations_of_subsets(x_tilde_list)
                     
                 #  Concatenate original data with itself to be used when computing reconstruction error
                 #  w.r.t reconstructions from xi and xj
@@ -195,7 +176,7 @@ class SubTab:
                 # Pass data through model
                 for xi in x_tilde_list:
                     
-                    # If we are using combination of subsets use xi as is since it is already a concatenation of two subsets. 
+                    # If we are using combination of subsets, use xi since it is already a concatenation of two subsets. 
                     # Else, concatenate subset with itself just to make the computation of loss compatible with the case, 
                     # in which we use the combinations. Note that Xorig is already concatenation of two copies of original input.
                     Xinput = xi if self.is_combination else self.process_batch(xi, xi)
@@ -238,7 +219,7 @@ class SubTab:
 
         # pass data through model
         for xi in x_tilde_list:
-            # If we are using combination of subsets use xi as is since it is already a concatenation of two subsets. 
+            # If we are using combination of subsets use xi since it is already a concatenation of two subsets. 
             # Else, concatenate subset with itself just to make the computation of loss compatible with the case, 
             # in which we use the combinations. Note that Xorig is already concatenation of two copies of original input.
             Xinput = xi if self.is_combination else self.process_batch(xi, xi)
@@ -273,6 +254,33 @@ class SubTab:
         del total_loss, contrastive_loss, recon_loss, zrecon_loss, tloss, closs, rloss, zloss
         gc.collect()
 
+    def get_combinations_of_subsets(self, x_tilde_list):
+        """Generate a list of combinations of subsets from the list of subsets
+
+        Args:
+            x_tilde_list (list): List of subsets e.g. [x1, x2, x3, ...]
+        
+        Returns:
+            (list): A list of combinations of subsets e.g. [(x1, x2), (x1, x3), ...]
+
+        """        
+                            
+        # Compute combinations of subsets [(x1, x2), (x1, x3)...]
+        subset_combinations = list(itertools.combinations(x_tilde_list, 2))
+        # List to store the concatenated subsets
+        concatenated_subsets_list = []
+        
+        # Go through combinations
+        for (xi, xj) in subset_combinations:
+            # Concatenate xi, and xj, and turn it into a tensor
+            Xbatch = self.process_batch(xi, xj)
+            # Add it to the list
+            concatenated_subsets_list.append(Xbatch)
+        
+        # Return the list of combination of subsets
+        return concatenated_subsets_list
+        
+        
     def mask_generator(self, p_m, x):
         """Generate mask vector."""
         mask = np.random.binomial(1, p_m, x.shape)
@@ -397,7 +405,7 @@ class SubTab:
         """Updates the messages displayed during training and evaluation"""
         # For the first epoch, add losses for batches since we still don't have loss for the epoch
         if epoch < 1:
-            description = f"Current losses per batch ::: Total:{self.loss['tloss_b'][-1]:.4f}"
+            description = f"Losses per batch - Total:{self.loss['tloss_b'][-1]:.4f}"
             description += f", X recon:{self.loss['rloss_b'][-1]:.4f}"
             if self.options["contrastive_loss"]:
                 description += f", contrastive:{self.loss['closs_b'][-1]:.4f}"
@@ -405,9 +413,9 @@ class SubTab:
                 description += f", z distance:{self.loss['zloss_b'][-1]:.6f}, Progress"
         # For sub-sequent epochs, display only epoch losses.
         else:
-            description = f"Epoch-{epoch} Summary ::: total training loss:{self.loss['tloss_e'][-1]:.4f}"
+            description = f"Epoch-{epoch} Total training loss:{self.loss['tloss_e'][-1]:.4f}"
             description += f", val loss:{self.loss['vloss_e'][-1]:.4f}" if self.options["validate"] else ""
-            description += f" | Current losses per batch::: X recon:{self.loss['rloss_b'][-1]:.4f}"
+            description += f" | Losses per batch - X recon:{self.loss['rloss_b'][-1]:.4f}"
             if self.options["contrastive_loss"]:
                 description += f", contrastive:{self.loss['closs_b'][-1]:.4f}"
             if self.options["distance_loss"]:

@@ -98,7 +98,7 @@ def evalulate_models(data_loader, model, config, plot_suffix="_Test", mode='trai
     for i, (x, label) in train_tqdm:
 
         # Generate subsets
-        x_tilde_list, _ = model.subset_generator(x)
+        x_tilde_list = model.subset_generator(x)
 
         latent_list = []
 

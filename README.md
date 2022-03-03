@@ -177,7 +177,8 @@ runtime config file in ```./config/runtime.yaml```
 @article{ucar2021subtab,
   title={SubTab: Subsetting Features of Tabular Data for Self-Supervised Representation Learning},
   author={Ucar, Talip and Hajiramezanali, Ehsan and Edwards, Lindsay},
-  journal={arXiv preprint arXiv:2110.04361},
+  journal={Advances in Neural Information Processing Systems},
+  volume={34},
   year={2021}
 }
 ```

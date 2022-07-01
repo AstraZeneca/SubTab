@@ -7,6 +7,8 @@ The official implementation of the paper,
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/subtab-subsetting-features-of-tabular-data/unsupervised-mnist-on-mnist)](https://paperswithcode.com/sota/unsupervised-mnist-on-mnist?p=subtab-subsetting-features-of-tabular-data)
 
+:large_orange_diamond: **Note:** The extended version of SubTab with codes and pre-processed data for Adult Income and BlogFeedback datasets can be found at: https://github.com/talipucar/SubTab_extended
+
 # Table of Contents:
 
 1. [Model](#model)
